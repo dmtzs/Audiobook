@@ -1,14 +1,27 @@
-from tkinter import Tk
-from tkinter.filedialog import askopenfilename
- 
-Tk().withdraw() # no queremos una GUI completa, así que evita que aparezca la ventana raíz
-filelocation = askopenfilename() # abre el cuadro de diálogo GUI
- 
-"""with open(filelocation, "rb") as f:  # abre el archivo en modo lectura (rb) y llámalo f
-    pdf = pdftotext.PDF(f)  # almacenar una versión de texto del archivo pdf f en la variable pdf
-string_of_text = ''
-for text in pdf:
-    string_of_text += text
- 
-final_file = gTTS(text=string_of_text, lang='en')  # almacenar archivo en variable
-final_file.save("Generated Speech.mp3")  # guardar archivo en la computadora"""
+try:
+    import platform
+    import tkinter as tk
+    from biblios import metodos
+    from tkinter import ttk
+    from tkinter import filedialog
+except ImportError as eImp:
+    print(f"Ocurrió el error: {eImp}")
+
+mainWin= tk.Tk()
+mainWin.title("Audiolibro")
+mainWin.resizable(width= False, height= False)
+mainWin.iconbitmap("./Audiolib.ico")
+screenWidth = mainWin.winfo_screenwidth()# Ancho del área de visualización
+screenHeight = mainWin.winfo_screenheight()# Alto del área de visualización
+sistema= platform.system()
+
+if sistema== "Windows":
+    width= 400
+    height= 450
+else:
+    width= 1000
+    height= 1050
+left = (screenWidth - width) / 2
+top = (screenHeight - height) / 2
+mainWin.geometry(f"{int(width)}x{int(height)}+{int(left)}+{int(top)}")
+mainWin.mainloop()
