@@ -11,6 +11,7 @@ it can be readed with this program.
 ```pip install -r requirements.txt```
 - If you dont want to use code and install anything then please download directly the exe file by [clicking here]() and 
 then just run the program after unziping the file.
+- For some command information for the pyttsx3 library [click here](https://ichi.pro/es/construye-tu-propio-audiolibro-en-7-lineas-de-codigo-python-210934534284465)
 
 ## Tkinter GUI
 Is still in developement, for now is through command line the program.
