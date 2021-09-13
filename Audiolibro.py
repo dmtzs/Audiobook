@@ -6,20 +6,23 @@ except ImportError as eImp:
     print(f"Ocurrió el siguiente error de importación: {eImp}")
 
 def ReadBook():
-    pdfReader= PyPDF2.PdfFileReader(open(r"C:\Users\Diego\OneDrive\Documentos\Cuentos y cosas varias\sombra.pdf", "rb"))
+    textoCompleto= ""
+
+    pdfReader= PyPDF2.PdfFileReader(open(r"C:\Users\Diego\OneDrive\Documentos\Cuentos y cosas varias\Sombra.pdf", "rb"))
     speaker= pyttsx3.init()
-    rate= speaker.getProperty("rate")
-    print(rate)
-    time.sleep(100)
+    speaker.setProperty("rate", 125)
+    speaker.setProperty("volume", 1.0)
+    
 
     for pageNum in range(pdfReader.numPages):
         text= pdfReader.getPage(pageNum).extractText()
         speaker.say(text)
         speaker.runAndWait()
+        textoCompleto+= text
 
     speaker.stop()
 
-    speaker.save_to_file(text, "audio.mp3")
+    speaker.save_to_file(textoCompleto, "audio.mp3")
     speaker.runAndWait()
 
 if __name__== "__main__":
