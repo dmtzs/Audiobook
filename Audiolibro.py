@@ -12,17 +12,25 @@ def ReadBook():
     speaker= pyttsx3.init()
     speaker.setProperty("rate", 125)
     speaker.setProperty("volume", 1.0)
+
+    bande= input("Qué deseas hacer, ingresa Y o n[Y= reproducir y guardar audio/n= solo guardar audio]: ")
+    bande.lower()
     
 
     for pageNum in range(pdfReader.numPages):
         text= pdfReader.getPage(pageNum).extractText()
-        speaker.say(text)
-        speaker.runAndWait()
         textoCompleto+= text
+        speaker.runAndWait()
+
+        if bande== "y":
+            speaker.say(text)
+        else:
+            pass
 
     speaker.stop()
 
-    speaker.save_to_file(textoCompleto, "audio.mp3")
+    nombreAudio= input("Ingresa el nombre que deseas que tenga el audio que se guardará: ")
+    speaker.save_to_file(textoCompleto, f"{nombreAudio}.mp3")
     speaker.runAndWait()
 
 if __name__== "__main__":
