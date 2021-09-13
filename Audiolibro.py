@@ -20,12 +20,12 @@ def ReadBook():
     for pageNum in range(pdfReader.numPages):
         text= pdfReader.getPage(pageNum).extractText()
         textoCompleto+= text
-        speaker.runAndWait()
 
         if bande== "y":
             speaker.say(text)
+            speaker.runAndWait()
         else:
-            pass
+            speaker.runAndWait()
 
     speaker.stop()
 
