@@ -25,7 +25,7 @@ def abrirRuta():
 # Instance of the class
 met= metodos.funciones(mainWin)
 
-# Initializing frame components
+# Initializing main frame components
 met.configWindow()
 
 # Title of the application
