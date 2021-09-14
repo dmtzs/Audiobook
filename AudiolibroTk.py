@@ -36,7 +36,7 @@ titleLabel.place(x= 90, y= 5)
 fileLabel= tk.Label(mainWin, fg= "black", text= "Choose file to read", font= ("jost", 15))
 fileLabel.place(x= 160, y= 68)
 
-saveEntry= tk.Button(mainWin, width= 10, bg= "#1DC90F", fg= "white", text= "Ruta", command= abrirRuta)
+saveEntry= tk.Button(mainWin, width= 10, bg= "#794ECF", fg= "white", text= "Ruta", command= abrirRuta)
 saveEntry.place(x= 10, y= 100)
 
 rutaError= tk.Label(mainWin, text= "Selecciona archivo", fg= "red", font= ("jost", 8))
