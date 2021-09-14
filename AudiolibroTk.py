@@ -1,5 +1,4 @@
 try:
-    import platform
     import tkinter as tk
     from biblios import metodos
     from tkinter import ttk
