@@ -11,7 +11,7 @@ fileName= ""
 # Declaration of the main frame
 mainWin= tk.Tk()
 
-# Methods
+# Other methods
 def abrirRuta():
     global fileName
 
