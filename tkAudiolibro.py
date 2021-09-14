@@ -68,4 +68,14 @@ valores= ["Save and play", "Save only"]
 guardCombo= ttk.Combobox(mainWin, values= valores, state= "readonly")
 guardCombo.place(x= 330, y= 226.5)
 
+# Components for choose language between english and spanish only
+lengVar= tk.IntVar()
+lengVar.set(1)
+
+lenguajeEs= tk.Radiobutton(mainWin, text= "Español", variable= lengVar, value= 1)
+lenguajeEs.place(x= 395, y= 15)
+
+lenguajeEn= tk.Radiobutton(mainWin, text= "English", variable= lengVar, value= 2)
+lenguajeEn.place(x= 395, y= 40)
+
 mainWin.mainloop()
