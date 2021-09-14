@@ -29,8 +29,8 @@ met= metodos.funciones(mainWin)
 met.configWindow()
 
 # Title of the application
-titleLabel= tk.Label(mainWin, fg= "purple", text= "Audiobook application", font= ("jost", 25))
-titleLabel.place(x= 90, y= 5)
+titleLabel= tk.Label(mainWin, fg= "purple", text= "PDF Audiobook", font= ("jost", 25))
+titleLabel.place(x= 130, y= 5)
 
 # Components for the selected file
 fileLabel= tk.Label(mainWin, fg= "black", text= "Choose file to read", font= ("jost", 15))
