@@ -7,6 +7,7 @@ except ImportError as eImp:
 class funciones():
     sis= ""
     comm= ""
+    folderName= ""
 
     def __init__(self, mainFrame):
         self.mainWin= mainFrame
