@@ -22,7 +22,7 @@ def abrirRuta():
         rutaError.config(text= "Por favor elije una ruta", fg= "red", font= ("jost", 8))
 # -----------------------------------------------------
 
-# Instance of the class
+# Instance of the class that has other methods
 met= metodos.funciones(mainWin)
 
 # Initializing main frame components
