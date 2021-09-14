@@ -13,8 +13,13 @@ it can be readed with this program.
 then just run the program after unziping the file.
 - For some command information for the pyttsx3 library [click here](https://ichi.pro/es/construye-tu-propio-audiolibro-en-7-lineas-de-codigo-python-210934534284465)
 - For create the executable file in windows you need to execute the next command:
+In linux
 ```
-pyinstaller --noconfirm --onefile --console --name "AudioLibroPDF" --icon "./Audiolib.ico" "./Audiolibro.py"
+pyinstaller --noconfirm --onefile --console --add-data "./Audiolib.ico;." --name "AudioLibroPDF" --icon "./Audiolib.ico" "./Audiolibro.py"
+```
+In windows
+```
+pyinstaller --noconfirm --onefile --windowed --add-data "./Audiolib.ico;." --name "AudioLibroPDF" --icon "./Audiolib.ico" "./Audiolibro.py"
 ```
 
 ## Tkinter GUI
