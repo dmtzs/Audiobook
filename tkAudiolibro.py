@@ -10,7 +10,7 @@ fileName= ""
 # Declaration of the main frame
 mainWin= tk.Tk()
 
-# Other methods
+# --------------------Other methods--------------------
 def abrirRuta():
     global fileName
 
@@ -20,6 +20,7 @@ def abrirRuta():
         rutaError.config(text= fileName, fg= "green", font= ("jost", 8))
     else:
         rutaError.config(text= "Por favor elije una ruta", fg= "red", font= ("jost", 8))
+# -----------------------------------------------------
 
 # Instance of the class
 met= metodos.funciones(mainWin)
