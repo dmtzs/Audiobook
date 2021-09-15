@@ -15,11 +15,11 @@ then just run the program after unziping the file.
 - For create the executable file in windows you need to execute the next command:
 In linux
 ```
-pyinstaller --noconfirm --onefile --console --add-data "./Audiolib.ico;." --name "AudioLibroPDF" --icon "./Audiolib.ico" "./Audiolibro.py"
+pyinstaller --noconfirm --onefile --console --add-data "./Audiolib.ico;." --name "AudioLibroPDF" --icon "./Audiolib.ico" "./tkAudiolibro.py"
 ```
 In windows
 ```
-pyinstaller --noconfirm --onefile --windowed --add-data "./Audiolib.ico;." --name "AudioLibroPDF" --icon "./Audiolib.ico" "./Audiolibro.py"
+pyinstaller --noconfirm --onefile --windowed --add-data "./Audiolib.ico;." --name "AudioLibroPDF" --icon "./Audiolib.ico" "./tkAudiolibro.py"
 ```
 
 ## Tkinter GUI
