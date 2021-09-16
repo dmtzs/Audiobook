@@ -27,10 +27,13 @@ class funciones():
             return "clear", sistema
 
     def configWindow(self):
-        self.mainWin.title()
+        self.mainWin.title("Audiobook app")
         self.mainWin.resizable(width= False, height= False)
-        imaIco= self.resource_path(self.fileIco)
-        self.mainWin.iconbitmap(imaIco)
+        try:
+            imaIco= self.resource_path(self.fileIco)
+            self.mainWin.iconbitmap(imaIco)
+        except Exception:
+            self.mainWin.iconbitmap("Audiolib.ico")
         screenWidth = self.mainWin.winfo_screenwidth()# Ancho del área de visualización
         screenHeight = self.mainWin.winfo_screenheight()# Alto del área de visualización
         self.comm, self.sis= self.commandSO()
