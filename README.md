@@ -10,8 +10,6 @@
     <img src="https://img.shields.io/github/stars/dmtzs/Audiobook">
 </p>
 
-## Audiobook wit python
-
 ## The project
 This is an desktop application in which we can read a PDF and transform the text of the PDF into 
 a voice that will read you all the PDF as a audiobook so if you have a tale or something like that 
