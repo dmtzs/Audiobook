@@ -3,3 +3,4 @@ build
 dist
 *.mp3
 *.spec
+consoleAudiolibro.py

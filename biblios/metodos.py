@@ -1,7 +1,12 @@
+from pyttsx3 import speak
+
+
 try:
     import os
     import sys
     import platform
+    import PyPDF2
+    import pyttsx3
     import tkinter as tk
     from tkinter import ttk, filedialog, messagebox
 except ImportError as eImp:
@@ -31,7 +36,7 @@ class funciones():
             return "clear", sistema
 
     def GUI(self):
-        # Otros métodos
+        # ----------------Otros métodos.----------------
         def abrirRuta():
             self.fileName= filedialog.askopenfilename()
 
@@ -40,7 +45,33 @@ class funciones():
             else:
                 rutaError.config(text= "Please choose a path", fg= "red", font= ("jost", 8))
 
-        # Instrucciones de la GUI principal.        
+        def audiobookCore():
+            speedRateDes= spinVelocidad.get()
+            outputname= fileNameEntry.get()
+            spElec= guardCombo.get()
+            textoCompleto= ""
+
+            pdfReader= PyPDF2.PdfFileReader(open(self.fileName, "rb"))
+            speaker= pyttsx3.init()
+            speaker.setProperty("rate", speedRateDes)
+            speaker.setProperty("volume", 1.0)
+
+            for pageNum in range(pdfReader.numPages):
+                text= pdfReader.getPage(pageNum).extractText()
+                textoCompleto+= text
+
+                if spElec== "Save and play":
+                    speaker.say(text)
+                    speaker.runAndWait()
+                else:
+                    speaker.runAndWait()
+
+            speaker.stop()
+
+            speaker.save_to_file(textoCompleto, f"{outputname}.mp3")
+            speaker.runAndWait()
+
+        # ----------------Instrucciones de la GUI principal.----------------
         self.mainWin.title(self.titleApp)
         self.mainWin.resizable(width= False, height= False)
         try:
@@ -109,7 +140,7 @@ class funciones():
         lenguajeEs= tk.Radiobutton(self.mainWin, text= "Español", variable= lengVar, value= 2)
         lenguajeEs.place(x= 395, y= 40)
 
-        applyBut= tk.Button(self.mainWin, fg= "white", width= 10, bg= "#794ECF", text= "Apply")# Aún necesitamos agregar un método para validar el formulario de la app.
+        applyBut= tk.Button(self.mainWin, fg= "white", width= 10, bg= "#794ECF", text= "Apply", command= audiobookCore)# Aún necesitamos agregar un método para validar el formulario de la app.
         applyBut.place(x= 196, y= 280)
 
         self.mainWin.mainloop()
