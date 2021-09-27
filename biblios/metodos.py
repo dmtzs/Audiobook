@@ -4,6 +4,7 @@ try:
     import platform
     import PyPDF2
     import pyttsx3
+    import webbrowser
     import tkinter as tk
     from tkinter.constants import CENTER
     from tkinter import ttk, filedialog, messagebox
@@ -36,6 +37,9 @@ class funciones():
 
     def GUI(self):
         # ----------------Otros métodos.----------------
+        def repoGit():
+            webbrowser.open("https://github.com/dmtzs/Audiobook")
+
         def abrirRuta():
             self.fileName= filedialog.askopenfilename()
 
@@ -160,5 +164,14 @@ class funciones():
 
         applyBut= tk.Button(self.mainWin, fg= "white", width= 10, bg= "#794ECF", text= "Apply", command= audiobookCore)# Aún necesitamos agregar un método para validar el formulario de la app.
         applyBut.place(x= 196, y= 370)
+
+        # Label to github repository
+        labelGit= tk.Label(self.mainWin, text= "Repositorio del programa:", font= ("jost", 10))
+        labelGit.place(x= 130, y= 525)
+
+        # Button to repository
+        butGit= tk.Button(self.mainWin, width= 10, bg= "#794ECF", fg= "white", text= "Repositorio", takefocus= False, command= repoGit)
+        butGit.place(x= 290, y= 523)
+
 
         self.mainWin.mainloop()
