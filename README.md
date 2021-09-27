@@ -27,7 +27,7 @@ then just run the program after unziping the file.
 
 In linux
 ```
-pyinstaller --noconfirm --onefile --windowed --add-data "./Audiolib.ico;." --name "AudioLibroPDF" --icon "./Audiolib.ico" "./tkAudiolib.py"
+pyinstaller --noconfirm --onefile --windowed --add-data "./Audiolib.ico:." --name "AudioLibroPDF" --icon "./Audiolib.ico" "./tkAudiolib.py"
 ```
 In windows
 ```
