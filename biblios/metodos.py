@@ -1,7 +1,3 @@
-from tkinter.constants import CENTER
-from pyttsx3 import speak
-
-
 try:
     import os
     import sys
@@ -9,6 +5,7 @@ try:
     import PyPDF2
     import pyttsx3
     import tkinter as tk
+    from tkinter.constants import CENTER
     from tkinter import ttk, filedialog, messagebox
 except ImportError as eImp:
     print(f"Ocurriò el siguiente ERROR de importación: {eImp}")
