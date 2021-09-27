@@ -46,7 +46,7 @@ class funciones():
                 rutaError.config(text= "Please choose a path", fg= "red", font= ("jost", 8))
 
         def audiobookCore():
-            speedRateDes= spinVelocidad.get()
+            speedRateDes= int(spinVelocidad.get())
             outputname= fileNameEntry.get()
             spElec= guardCombo.get()
             textoCompleto= ""
