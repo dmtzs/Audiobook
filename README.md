@@ -48,11 +48,7 @@ pyinstaller --noconfirm --onefile --windowed --add-data "./Audiolib.ico;." --nam
 - If you dont want to use code and install anything then you might be interested in downloading directly the exe file by [clicking here](https://github.com/dmtzs/Audiobook/releases) and 
 then just run the program after unziping the file.
 - For some command information for the pyttsx3 library [click here](https://ichi.pro/es/construye-tu-propio-audiolibro-en-7-lineas-de-codigo-python-210934534284465)
+- You can use whatever PDF and TXT file for using this application but the file should contain text only.
 
 ## Documentation
 The documentation is still in development but the link will be here.
-
-## Test the application
-In the releases part is one file that you can use in order to make a test with the application.
-<br>
-Just download that file and the executable and choose that file in order to be used in the program.
