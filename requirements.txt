@@ -1,3 +1,5 @@
 PyPDF2
 pyttsx3
+pillow
+qrcode
 pyinstaller
