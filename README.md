@@ -60,3 +60,10 @@ then just run the program after unziping the file.
 
 ## Documentation
 The documentation is still in development but the link will be here.
+
+# Enjoying this Audiobook app? Consider a donation!!
+This project is an opensource and free project. That doesn't mean we don't need any money.
+
+Please consider a donation to help us cover the ongoing costs like keep improving the code. If we receive enough donations we might even be able to free up some working hours and spend some extra time improving the platform core and adding more functionalities.
+
+To donate, please follow this [link](https://ceneka.net/dmtzs).
