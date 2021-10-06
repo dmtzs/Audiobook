@@ -24,29 +24,55 @@ class extraMethods():
         else:
             return "clear", sistema
 
-    def generateAudio(self, speedRateDes, outputname, spElec, pdfReader):
+    def generateAudio(self, speedRateDes, outputname, spElec, pdftxtReader, ext):
         try:
-            textoCompleto= ""
-
-            #pdfReader= PyPDF2.PdfFileReader(open(self.fileName, "rb"))
             speaker= pyttsx3.init()
             speaker.setProperty("rate", speedRateDes)
             speaker.setProperty("volume", 1.0)
 
-            for pageNum in range(pdfReader.numPages):
-                text= pdfReader.getPage(pageNum).extractText()
-                textoCompleto+= text
+            if ext== ".pdf":
+                textoCompleto= ""
 
+                for pageNum in range(pdftxtReader.numPages):
+                    text= pdftxtReader.getPage(pageNum).extractText()
+                    textoCompleto+= text
+
+                    if spElec== "Save and play":
+                        speaker.say(text)
+                        speaker.runAndWait()
+                    else:
+                        speaker.runAndWait()
+
+                speaker.stop()
+
+                speaker.save_to_file(textoCompleto, f"{self.folderName}/{outputname}.mp3")
+                speaker.runAndWait()
+            else:
                 if spElec== "Save and play":
-                    speaker.say(text)
+                    speaker.say(pdftxtReader)
                     speaker.runAndWait()
                 else:
                     speaker.runAndWait()
 
-            speaker.stop()
+                speaker.stop()
 
-            speaker.save_to_file(textoCompleto, f"{self.folderName}/{outputname}.mp3")
-            speaker.runAndWait()
+                speaker.save_to_file(pdftxtReader, f"{self.folderName}/{outputname}.mp3")
+                speaker.runAndWait()
+
+            # for pageNum in range(pdftxtReader.numPages):
+            #     text= pdftxtReader.getPage(pageNum).extractText()
+            #     textoCompleto+= text
+
+            #     if spElec== "Save and play":
+            #         speaker.say(text)
+            #         speaker.runAndWait()
+            #     else:
+            #         speaker.runAndWait()
+
+            # speaker.stop()
+
+            # speaker.save_to_file(textoCompleto, f"{self.folderName}/{outputname}.mp3")
+            # speaker.runAndWait()
 
             messagebox.showinfo("Éxito", "Archivo convertido en audio con éxito")
 
@@ -95,11 +121,13 @@ class funciones(extraMethods):
 
             if ext== ".pdf":
                 pdfReader= PyPDF2.PdfFileReader(open(self.fileName, "rb"))
-                self.generateAudio(speedRateDes, outputname, spElec, pdfReader)
+                self.generateAudio(speedRateDes, outputname, spElec, pdfReader, ext)
             elif ext== ".txt":
-                pass
+                with open(self.fileName) as f:
+                    txtLines = f.readlines()
+                self.generateAudio(speedRateDes, outputname, spElec, txtLines, ext)
             else:
-                pass
+                messagebox.showerror("ERROR", "You should select only TXT and/or PDF files")
 
         # ----------------Instrucciones de la GUI principal.----------------
         self.mainWin.title(self.titleApp)
