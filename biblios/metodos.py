@@ -59,21 +59,6 @@ class extraMethods():
                 speaker.save_to_file(pdftxtReader, f"{self.folderName}/{outputname}.mp3")
                 speaker.runAndWait()
 
-            # for pageNum in range(pdftxtReader.numPages):
-            #     text= pdftxtReader.getPage(pageNum).extractText()
-            #     textoCompleto+= text
-
-            #     if spElec== "Save and play":
-            #         speaker.say(text)
-            #         speaker.runAndWait()
-            #     else:
-            #         speaker.runAndWait()
-
-            # speaker.stop()
-
-            # speaker.save_to_file(textoCompleto, f"{self.folderName}/{outputname}.mp3")
-            # speaker.runAndWait()
-
             messagebox.showinfo("Éxito", "Archivo convertido en audio con éxito")
 
         except Exception:
