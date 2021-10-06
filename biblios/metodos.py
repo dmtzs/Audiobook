@@ -11,18 +11,7 @@ try:
 except ImportError as eImp:
     print(f"Ocurriò el siguiente ERROR de importación: {eImp}")
 
-class funciones():
-    sis= ""
-    comm= ""
-    fileName= ""
-    folderName= ""
-    fileIco= "Audiolib.ico"
-    mainWin= tk.Tk()
-
-    def __init__(self, titleApp, mainTitleApp):
-        self.titleApp= titleApp
-        self.mainTitleApp= mainTitleApp
-
+class extraMethods():
     def resource_path(self, relativePath):
         basePath= getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
         return os.path.join(basePath, relativePath)
@@ -34,6 +23,18 @@ class funciones():
             return "cls", sistema
         else:
             return "clear", sistema
+
+class funciones(extraMethods):
+    sis= ""
+    comm= ""
+    fileName= ""
+    folderName= ""
+    fileIco= "Audiolib.ico"
+    mainWin= tk.Tk()
+
+    def __init__(self, titleApp, mainTitleApp):
+        self.titleApp= titleApp
+        self.mainTitleApp= mainTitleApp
 
     def GUI(self):
         # ----------------Otros métodos.----------------
@@ -55,6 +56,9 @@ class funciones():
                 rutaError2.config(text= self.folderName, fg= "green", font= ("jost", 8))
             else:
                 rutaError2.config(text= "Please choose a path", fg= "red", font= ("jost", 8))
+
+        def readPDF():
+            pass
 
         def audiobookCore():
             try:
@@ -121,7 +125,7 @@ class funciones():
         rutaError= tk.Label(self.mainWin, fg= "red", text= "Select a file", font= ("jost", 8))
         rutaError.place(x= 90, y= 102)
 
-        saveEntry= tk.Button(self.mainWin, fg= "white", width= 10, bg= "#794ECF", text= "File", command= abrirRuta)
+        saveEntry= tk.Button(self.mainWin, fg= "white", width= 10, bg= "#794ECF", text= "File", takefocus= False, command= abrirRuta)
         saveEntry.place(x= 10, y= 100)
 
         fileLabel= tk.Label(self.mainWin, fg= "black", text= "Choose path to save output file", font= ("jost", 15))
@@ -130,7 +134,7 @@ class funciones():
         rutaError2= tk.Label(self.mainWin, fg= "red", text= "Select a path", font= ("jost", 8))
         rutaError2.place(x= 90, y= 182)
 
-        saveEntry2= tk.Button(self.mainWin, fg= "white", width= 10, bg= "#794ECF", text= "Path", command= abrirRuta2)
+        saveEntry2= tk.Button(self.mainWin, fg= "white", width= 10, bg= "#794ECF", text= "Path", takefocus= False, command= abrirRuta2)
         saveEntry2.place(x= 10, y= 180)
 
         # ----------------Resto de componentes----------------
@@ -148,6 +152,7 @@ class funciones():
         fileNameEntryText= tk.StringVar()
         fileNameEntryText.set("output")
         fileNameEntry= tk.Entry(self.mainWin, width= 40, textvariable= fileNameEntryText)
+        fileNameEntry.focus()
         fileNameEntry.place(x= 240, y= 273.4)
 
         guardLabel= tk.Label(self.mainWin, fg= "black", text= "Save and play or just save the audio file?:", font= ("jost", 13))
@@ -162,21 +167,21 @@ class funciones():
         lengVar= tk.IntVar()
         lengVar.set(1)
 
-        lenguajeEn= tk.Radiobutton(self.mainWin, text= "English", variable= lengVar, value= 1)
+        lenguajeEn= tk.Radiobutton(self.mainWin, text= "English", variable= lengVar, value= 1, takefocus= False)
         lenguajeEn.place(x= 395, y= 5)
 
-        lenguajeEs= tk.Radiobutton(self.mainWin, text= "Español", variable= lengVar, value= 2)
+        lenguajeEs= tk.Radiobutton(self.mainWin, text= "Español", variable= lengVar, value= 2, takefocus= False)
         lenguajeEs.place(x= 395, y= 30)
 
-        applyBut= tk.Button(self.mainWin, fg= "white", width= 10, bg= "#794ECF", text= "Apply", command= audiobookCore)# Aún necesitamos agregar un método para validar el formulario de la app.
+        applyBut= tk.Button(self.mainWin, fg= "white", width= 10, bg= "#794ECF", text= "Apply", takefocus= False, command= audiobookCore)# Aún necesitamos agregar un método para validar el formulario de la app.
         applyBut.place(x= 196, y= 370)
 
         # Label to github repository
-        labelGit= tk.Label(self.mainWin, text= "Repositorio del programa:", font= ("jost", 10))
+        labelGit= tk.Label(self.mainWin, text= "Repository of the program:", font= ("jost", 10))
         labelGit.place(x= 130, y= 525)
 
         # Button to repository
-        butGit= tk.Button(self.mainWin, width= 10, bg= "#794ECF", fg= "white", text= "Repositorio", takefocus= False, command= repoGit)
+        butGit= tk.Button(self.mainWin, width= 10, bg= "#794ECF", fg= "white", text= "Repository", takefocus= False, command= repoGit)
         butGit.place(x= 290, y= 523)
 
 
