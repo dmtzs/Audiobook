@@ -24,6 +24,35 @@ class extraMethods():
         else:
             return "clear", sistema
 
+    def generateAudio(self, speedRateDes, outputname, spElec, pdfReader):
+        try:
+            textoCompleto= ""
+
+            #pdfReader= PyPDF2.PdfFileReader(open(self.fileName, "rb"))
+            speaker= pyttsx3.init()
+            speaker.setProperty("rate", speedRateDes)
+            speaker.setProperty("volume", 1.0)
+
+            for pageNum in range(pdfReader.numPages):
+                text= pdfReader.getPage(pageNum).extractText()
+                textoCompleto+= text
+
+                if spElec== "Save and play":
+                    speaker.say(text)
+                    speaker.runAndWait()
+                else:
+                    speaker.runAndWait()
+
+            speaker.stop()
+
+            speaker.save_to_file(textoCompleto, f"{self.folderName}/{outputname}.mp3")
+            speaker.runAndWait()
+
+            messagebox.showinfo("Éxito", "Archivo convertido en audio con éxito")
+
+        except Exception:
+            messagebox.showinfo("Error", "Algo falló al leer el archivo, asegurate de que sea un PDF o TXT")
+
 class funciones(extraMethods):
     sis= ""
     comm= ""
@@ -57,40 +86,20 @@ class funciones(extraMethods):
             else:
                 rutaError2.config(text= "Please choose a path", fg= "red", font= ("jost", 8))
 
-        def readPDF():
-            pass
-
         def audiobookCore():
-            try:
-                speedRateDes= int(spinVelocidad.get())
-                outputname= fileNameEntry.get()
-                spElec= guardCombo.get()
-                textoCompleto= ""
+            outputname= fileNameEntry.get()
+            speedRateDes= int(spinVelocidad.get())
+            spElec= guardCombo.get()
 
+            _, ext= os.path.splitext(self.fileName)
+
+            if ext== ".pdf":
                 pdfReader= PyPDF2.PdfFileReader(open(self.fileName, "rb"))
-                speaker= pyttsx3.init()
-                speaker.setProperty("rate", speedRateDes)
-                speaker.setProperty("volume", 1.0)
-
-                for pageNum in range(pdfReader.numPages):
-                    text= pdfReader.getPage(pageNum).extractText()
-                    textoCompleto+= text
-
-                    if spElec== "Save and play":
-                        speaker.say(text)
-                        speaker.runAndWait()
-                    else:
-                        speaker.runAndWait()
-
-                speaker.stop()
-
-                speaker.save_to_file(textoCompleto, f"{self.folderName}/{outputname}.mp3")
-                speaker.runAndWait()
-
-                messagebox.showinfo("Éxito", "Archivo convertido en audio con éxito")
-
-            except Exception:
-                messagebox.showinfo("Error", "Algo falló al leer el archivo, asegurate de que sea un PDF o TXT")
+                self.generateAudio(speedRateDes, outputname, spElec, pdfReader)
+            elif ext== ".txt":
+                pass
+            else:
+                pass
 
         # ----------------Instrucciones de la GUI principal.----------------
         self.mainWin.title(self.titleApp)
