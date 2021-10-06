@@ -62,7 +62,7 @@ class extraMethods():
             messagebox.showinfo("Éxito", "Archivo convertido en audio con éxito")
 
         except Exception:
-            messagebox.showinfo("Error", "Algo falló al leer el archivo, asegurate de que sea un PDF o TXT")
+            messagebox.showerror("Error", "Algo falló al leer el archivo, asegurate de que sea un PDF o TXT")
 
 class funciones(extraMethods):
     sis= ""
