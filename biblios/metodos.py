@@ -107,10 +107,14 @@ class funciones(extraMethods):
             if ext== ".pdf":
                 pdfReader= PyPDF2.PdfFileReader(open(self.fileName, "rb"))
                 self.generateAudio(speedRateDes, outputname, spElec, pdfReader, ext)
+
             elif ext== ".txt":
-                with open(self.fileName) as f:
+                with open(self.fileName, encoding= "utf8") as f:
                     txtLines = f.readlines()
-                self.generateAudio(speedRateDes, outputname, spElec, txtLines, ext)
+                for elem in range(len(txtLines)):
+                    txtLines[elem]= txtLines[elem][:-1]
+                self.generateAudio(speedRateDes-15.4, outputname, spElec, txtLines, ext)
+                
             else:
                 messagebox.showerror("ERROR", "You should select only TXT and/or PDF files")
 
