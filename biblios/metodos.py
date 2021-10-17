@@ -9,7 +9,7 @@ try:
     from tkinter.constants import CENTER
     from tkinter import ttk, filedialog, messagebox
 except ImportError as eImp:
-    print(f"Ocurriò el siguiente ERROR de importación: {eImp}")
+    print(f"Ocurrió el siguiente ERROR de importación: {eImp}")
 
 class extraMethods():
     def resource_path(self, relativePath):
@@ -64,13 +64,25 @@ class extraMethods():
         except Exception:
             messagebox.showerror("ERROR", "Something failed at the moment we try to reads the file, be sure that is a PDF or TXT file")
 
-    def messageDialog(self, nameFile):
-        if nameFile== "":
-            messagebox.showerror("ERROR", "The name of the file shouldn´t be empty")
-
-            return 1
-        else:
+    def validateSpinEntryName(self, actName, bande):
+        if actName== "":
+            print("Entro aqui")
             return 0
+
+        elif actName.isspace():
+            return 0
+
+        elif actName== "0" and bande== 1:
+            return 0
+        
+        elif not actName.isnumeric() and bande== 1:
+            return 0
+
+        elif (actName.isnumeric()) and (bande== 1) and (len(actName)>3):
+            return 0
+
+        else:
+            return 1
 
 class funciones(extraMethods):
     sis= ""
@@ -84,6 +96,7 @@ class funciones(extraMethods):
         self.mainTitleApp= mainTitleApp
 
     def GUI(self):
+        banderas= [0, 0, 0, 0]# Ruta al archivo seleccionado, Ruta de salida del mp3, Ratio válido, Nombre del archivo mp3 resultante
         # ----------------Otros métodos.----------------
         def repoGit():
             webbrowser.open("https://github.com/dmtzs/Audiobook")
@@ -93,42 +106,58 @@ class funciones(extraMethods):
 
             if len(self.fileName) > 1:
                 rutaError.config(text= self.fileName, fg= "green", font= ("jost", 8))
+                banderas[0]= 1
             else:
                 rutaError.config(text= "Please choose a file", fg= "red", font= ("jost", 8))
+                banderas[0]= 0
 
         def abrirRuta2():
             self.folderName= filedialog.askdirectory()
 
             if len(self.folderName) > 1:
                 rutaError2.config(text= self.folderName, fg= "green", font= ("jost", 8))
+                banderas[1]= 1
             else:
                 rutaError2.config(text= "Please choose a path", fg= "red", font= ("jost", 8))
+                banderas[1]= 0
 
         def audiobookCore():
-            outputname= fileNameEntry.get()
-            speedRateDes= int(spinVelocidad.get())
-            spElec= guardCombo.get()
-
-            _, ext= os.path.splitext(self.fileName)
-
-            if ext== ".pdf":
-                pdfReader= PyPDF2.PdfFileReader(open(self.fileName, "rb"))
-                self.generateAudio(speedRateDes, outputname, spElec, pdfReader, ext)
-
-            elif ext== ".txt":
-                with open(self.fileName, encoding= "utf8") as f:
-                    txtLines = f.readlines()
-                for elem in range(len(txtLines)):
-                    txtLines[elem]= txtLines[elem][:-1]
-                self.generateAudio(speedRateDes-15.4, outputname, spElec, txtLines, ext)
-
+            if banderas[0]== 0:
+                messagebox.showerror("ERROR", "The path to the file shouldnt be empty or should be txt or pdf only")
+            elif banderas[1]== 0:
+                messagebox.showerror("ERROR", "The output path of the mp3 file shouldnt be empty")
+            elif banderas[2]== 0:
+                messagebox.showerror("ERROR", "The ratio of the voice shouldnt be 0 or empty and also shouldnt have letters and should be a number of three digits only")
+            elif banderas[3]== 0:
+                messagebox.showerror("ERROR", "The name of the output mp3 file shouldnt be empty")
             else:
-                messagebox.showerror("ERROR", "You should select only TXT and/or PDF files")
+                outputname= fileNameEntry.get()
+                speedRateDes= int(spinVelocidad.get())
+                spElec= guardCombo.get()
 
+                _, ext= os.path.splitext(self.fileName)
+                del _
+                
+                if ext== ".pdf":
+                    pdfReader= PyPDF2.PdfFileReader(open(self.fileName, "rb"))
+                    self.generateAudio(speedRateDes, outputname, spElec, pdfReader, ext)
+
+                elif ext== ".txt":
+                    with open(self.fileName, encoding= "utf8") as f:
+                        txtLines = f.readlines()
+                    for elem in range(len(txtLines)):
+                        txtLines[elem]= txtLines[elem][:-1]
+                    self.generateAudio(speedRateDes-15.4, outputname, spElec, txtLines, ext)
+            
+        def validateSpinRatio(*args):
+            actRatio= spinVelocidad.get()
+
+            banderas[2]= self.validateSpinEntryName(actRatio, 1)
+        
         def validateEntryName(*args):
-            nameFile= fileNameEntry.get()
+            nameFile= fileNameEntryText.get()
 
-            self.messageDialog(nameFile)
+            banderas[3]= self.validateSpinEntryName(nameFile, 0)
 
         # ----------------Instrucciones de la GUI principal.----------------
         mainWin= tk.Tk()
@@ -181,19 +210,20 @@ class funciones(extraMethods):
         velocidadLabel.place(x= 10, y= 230)
 
         spinVelVar= tk.StringVar()
-        spinVelVar.set("130")
         spinVelocidad= tk.Spinbox(mainWin, from_= 1, to= 200, width= 15, textvariable= spinVelVar)
         spinVelocidad.place(x= 240, y= 233)
+        spinVelVar.trace_add("write", validateSpinRatio)
+        spinVelVar.set("130")
 
         fileNameLabel= tk.Label(mainWin, fg= "black", text= "Enter the name of the mp3 file:", font= ("jost", 13))
         fileNameLabel.place(x= 10, y= 270)
 
         fileNameEntryText= tk.StringVar()
-        fileNameEntryText.set("output")
         fileNameEntry= tk.Entry(mainWin, width= 40, textvariable= fileNameEntryText)
         fileNameEntry.focus()
         fileNameEntry.place(x= 240, y= 273.4)
         fileNameEntryText.trace_add("write", validateEntryName)
+        fileNameEntryText.set("output")
 
         guardLabel= tk.Label(mainWin, fg= "black", text= "Save and play or just save the audio file?:", font= ("jost", 13))
         guardLabel.place(x= 10, y= 315)
