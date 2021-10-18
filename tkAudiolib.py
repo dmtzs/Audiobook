@@ -5,12 +5,11 @@ except ImportError as eImp:
 
 # Llamada a programa principal
 if __name__== "__main__":
-    mainTitleApp= "Audiobook"
     titleApp= "Audiobook app"
 
     try:
         # Llamadas a la GUI
-        met= metodos.funciones(titleApp, mainTitleApp)
+        met= metodos.funciones(titleApp)
         met.GUI()
     except KeyboardInterrupt:
         print("Se presionó Ctrl + C")

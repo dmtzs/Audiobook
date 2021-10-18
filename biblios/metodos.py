@@ -91,13 +91,14 @@ class funciones(extraMethods):
     folderName= ""
     fileIco= "Audiolib.ico"
 
-    def __init__(self, titleApp, mainTitleApp):
+    def __init__(self, titleApp):
         self.titleApp= titleApp
-        self.mainTitleApp= mainTitleApp
 
     def GUI(self):
         banderas= [0, 0, 0, 0]# Ruta al archivo seleccionado, Ruta de salida del mp3, Ratio válido, Nombre del archivo mp3 resultante
         # ----------------Otros métodos.----------------
+        
+
         def repoGit():
             webbrowser.open("https://github.com/dmtzs/Audiobook")
 
@@ -182,9 +183,48 @@ class funciones(extraMethods):
         top = (screenHeight - height) / 2
         mainWin.geometry(f"{int(width)}x{int(height)}+{int(left)}+{int(top)}")
 
+        def languages():
+            radioOp= lengVar.get()
+
+            if radioOp== 1:
+                titleLabel.config(text= "Audiobook")
+                fileLabel.config(text= "Choose file to read")
+                fileLabel2.config(text= "Choose path to save output file")
+                saveEntry.config(text= "File")
+                saveEntry2.config(text= "Path")
+                velocidadLabel.config(text= "Enter speed rate of the voice:")
+                fileNameLabel.config(text= "Enter the name of the mp3 file:")
+                guardLabel.config(text= "Save and play or just save the audio file?:")
+                applyBut.config(text= "Apply")
+                labelGit.config(text= "Repository of the program:")
+                butGit.config(text= "Repository")
+
+                spinVelocidad.place(x= 240, y= 233)
+                fileNameEntry.config(width= 40)
+                fileNameEntry.place(x= 240, y= 273.4)
+                guardCombo.config(width= 22)
+                guardCombo.place(x= 330, y= 316.5)
+            else:
+                titleLabel.config(text= "Audiolibro")
+                fileLabel.config(text= "Elige el archivo a leer")
+                fileLabel2.config(text= "Elige la ruta para guardar el archivo resultante")
+                saveEntry.config(text= "Archivo")
+                saveEntry2.config(text= "Ruta")
+                velocidadLabel.config(text= "Ingresa tasa de velocidad de la voz:")
+                fileNameLabel.config(text= "Ingresa nombre del archivo mp3:")
+                guardLabel.config(text= "Guardar y reproducir o solo guardar el audio?:")
+                applyBut.config(text= "Aplicar")
+                labelGit.config(text= "Repositorio del programa:")
+                butGit.config(text= "Repositorio")
+
+                spinVelocidad.place(x= 285, y= 233)
+                fileNameEntry.config(width= 36)
+                fileNameEntry.place(x= 260, y= 273.4)
+                guardCombo.config(width= 18)
+                guardCombo.place(x= 360, y= 316.5)
         # ----------------Componentes del frame----------------
         # ----------------Rutas----------------
-        titleLabel= tk.Label(mainWin, fg= "purple", text= self.mainTitleApp, font= ("jost", 25))
+        titleLabel= tk.Label(mainWin, fg= "purple", text= "Audiobook", font= ("jost", 25))
         titleLabel.place(relx= 0.5, y= 25, anchor= CENTER)
 
         fileLabel= tk.Label(mainWin, fg= "black", text= "Choose file to read", font= ("jost", 15))
@@ -196,8 +236,8 @@ class funciones(extraMethods):
         saveEntry= tk.Button(mainWin, fg= "white", width= 10, bg= "#794ECF", text= "File", takefocus= False, command= abrirRuta)
         saveEntry.place(x= 10, y= 100)
 
-        fileLabel= tk.Label(mainWin, fg= "black", text= "Choose path to save output file", font= ("jost", 15))
-        fileLabel.place(relx= 0.5, y= 150, anchor= CENTER)
+        fileLabel2= tk.Label(mainWin, fg= "black", text= "Choose path to save output file", font= ("jost", 15))
+        fileLabel2.place(relx= 0.5, y= 150, anchor= CENTER)
 
         rutaError2= tk.Label(mainWin, fg= "red", text= "Select a path", font= ("jost", 8))
         rutaError2.place(x= 90, y= 182)
@@ -231,16 +271,16 @@ class funciones(extraMethods):
         valores= ["Save only", "Save and play"]
         valComb= tk.StringVar()
         valComb.set(valores[0])
-        guardCombo= ttk.Combobox(mainWin, values= valores, state= "readonly", textvariable= valComb)
+        guardCombo= ttk.Combobox(mainWin, values= valores, state= "readonly", textvariable= valComb, width= 22)
         guardCombo.place(x= 330, y= 316.5)
 
         lengVar= tk.IntVar()
         lengVar.set(1)
 
-        lenguajeEn= tk.Radiobutton(mainWin, text= "English", variable= lengVar, value= 1, takefocus= False)
+        lenguajeEn= tk.Radiobutton(mainWin, text= "English", variable= lengVar, value= 1, takefocus= False, command= languages)
         lenguajeEn.place(x= 395, y= 5)
 
-        lenguajeEs= tk.Radiobutton(mainWin, text= "Español", variable= lengVar, value= 2, takefocus= False)
+        lenguajeEs= tk.Radiobutton(mainWin, text= "Español", variable= lengVar, value= 2, takefocus= False, command= languages)
         lenguajeEs.place(x= 395, y= 30)
 
         applyBut= tk.Button(mainWin, fg= "white", width= 10, bg= "#794ECF", text= "Apply", takefocus= False, command= audiobookCore)# Aún necesitamos agregar un método para validar el formulario de la app.
