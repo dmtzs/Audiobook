@@ -58,6 +58,11 @@ then just run the program after unziping the file.
 - For some command information for the pyttsx3 library [click here](https://ichi.pro/es/construye-tu-propio-audiolibro-en-7-lineas-de-codigo-python-210934534284465)
 - You can use whatever PDF and TXT file for using this application but the file should contain text only.
 
+## Languages supported
+This refers to the language of the file
+* Spanish
+* English
+
 ## Documentation
 The documentation is still in development but the link will be here.
 
