@@ -8,7 +8,7 @@ if __name__== "__main__":
     titleApp= "Audiobook app"
 
     try:
-        # Llamadas a la GUI
+        # Llamadas a la GUI y los métodos
         met= metodos.funciones(titleApp)
         met.GUI()
     except KeyboardInterrupt:
