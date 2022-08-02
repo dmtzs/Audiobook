@@ -16,6 +16,7 @@
   <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/dmtzs/Audiobook?color=purple">
   <img alt="Lines of code" src="https://img.shields.io/tokei/lines/github/dmtzs/Audiobook?color=purple&label=total%20lines%20in%20repo">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/dmtzs/Audiobook?color=purple">
+  <img alt="Pylint" src="https://github.com/dmtzs/Audiobook/actions/workflows/pylint.yml/badge.svg?logo=github">
 </p>
 
 ## The project
