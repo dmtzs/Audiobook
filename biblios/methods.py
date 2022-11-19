@@ -11,11 +11,11 @@ except ImportError as eImp:
 
 
 class Funciones(extra_methods.ExtraMethods):
-    sis= ""
-    comm= ""
-    file_name= ""
-    folder_name= ""
-    file_ico= "Audiolib.ico"
+    sis = ""
+    comm = ""
+    file_name = ""
+    folder_name = ""
+    file_ico = "Audiolib.ico"
 
     def __init__(self, title_app):
         self.title_app= title_app
