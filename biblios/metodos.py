@@ -12,7 +12,7 @@ except ImportError as eImp:
     print(f"Ocurrió el siguiente ERROR de importación: {eImp}")
 
 class extraMethods():
-    def resource_path(self, relativePath):
+    def resource_path(self, relativePath: str):
         basePath= getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
         return os.path.join(basePath, relativePath)
 
@@ -24,7 +24,7 @@ class extraMethods():
         else:
             return "clear", sistema
 
-    def generateAudio(self, speedRateDes, outputname, spElec, pdftxtReader, ext):
+    def generateAudio(self, speedRateDes: int, outputname: str, spElec: str, pdftxtReader: PyPDF2, ext: str):
         try:
             speaker= pyttsx3.init()
             speaker.setProperty("rate", speedRateDes)
