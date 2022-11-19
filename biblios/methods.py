@@ -76,22 +76,22 @@ class Funciones(extra_methods.ExtraMethods):
                         txtLines[elem]= txtLines[elem][:-1]
                     self.generate_audio(speedRateDes-15.4, outputname, spElec, txtLines, ext)
             
-        def validate_spin_ratio(*args):
+        def validate_spin_ratio(*args) -> None:
             actRatio= spin_velocidad.get()
 
             banderas[2]= self.validate_spin_entry_name(actRatio, 1)
         
-        def validate_entry_name(*args):
+        def validate_entry_name(*args) -> None:
             nameFile= file_nameEntryText.get()
 
             banderas[3]= self.validate_spin_entry_name(nameFile, 0)
 
         # ----------------Instrucciones de la GUI principal.----------------
-        main_win= tk.Tk()
+        main_win = tk.Tk()
         main_win.title(self.title_app)
         main_win.resizable(width= False, height= False)
         try:
-            imaIco= self.resource_path(self.file_ico)
+            imaIco = self.resource_path(self.file_ico)
             main_win.iconbitmap(imaIco)
         except Exception:
             main_win.iconbitmap("Audiolib.ico")

@@ -1,7 +1,7 @@
 try:
     from biblios import methods
-except ImportError as eImp:
-    print(f"Ocurrió el siguiente error de importación: {eImp}")
+except ImportError as e_imp:
+    print(f"Ocurrió el siguiente error de importación: {e_imp}")
 
 # Llamada a programa principal
 if __name__== "__main__":
